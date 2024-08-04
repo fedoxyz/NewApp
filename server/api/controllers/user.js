@@ -29,7 +29,7 @@ const signIn = async (req, res, next) => {
         process.env.JWT_KEY,);
       res.set("Authorization", `Bearer ${token}`);
       res.set("Access-Control-Expose-Headers", "Authorization");
-     res.json({ user });
+      res.json({ user });
     } else {
       res.status(401).json({ message: "Invalid email or password" });
     }
@@ -39,23 +39,26 @@ const signIn = async (req, res, next) => {
 };
 
 const verify = async (req, res, next) => {
-try {
-  const token = req.headers.authorization.split(" ")[1];
-  jwt.verify(token, process.env.JWT_KEY);
-
-  res.status(201).json();
-   } catch (error) {
-   next(error);
-   }
+  try {
+    const token = req.headers.authorization.split(" ")[1];
+    if (token) {
+      jwt.verify(token, process.env.JWT_KEY);
+      res.status(201).json();
+    } else {
+      next()
+    }
+  } catch (error) {
+    next(error);
+  }
 }
 
 const userInfo = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
 
-  decodedToken = jwt.decode(token, process.env.JWT_KEY)
+    decodedToken = jwt.decode(token, process.env.JWT_KEY)
 
-      console.log(decodedToken);
+    console.log(decodedToken);
 
   } catch (error) {
     next(error);
@@ -69,4 +72,3 @@ module.exports = {
   verify,
   userInfo
 };
-
