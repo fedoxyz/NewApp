@@ -2,8 +2,7 @@ const express = require('express');
 const router  = express.Router();
 const userController = require('../controllers/user');
 
-router.get('/user', userController.getAllUsers);
-router.post('/user', userController.newUser);
-router.get('/user/:id', userController.getUser);
+router.post('/api/sign-up', userController.signUp);
+router.get('/api/sign-in', userController.signIn);
 
 module.exports = router;
