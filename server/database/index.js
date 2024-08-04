@@ -1,5 +1,4 @@
-const { Sequelize, DataTypes } = require("sequelize");   
-const bcrypt = require("bcrypt"); 
+const { Sequelize } = require("sequelize");   
 require("dotenv").config();
 
 var db = {}
@@ -16,7 +15,7 @@ const sequelize = new Sequelize(
 );
 
 async function setupDB(){
- db.User = require("./models/users"); 
+ db.Users = require("./models/users"); 
 }
 
 module.exports = {

@@ -1,15 +1,33 @@
-const getAllUsers = (req, res, next) => {
-    res.json({message: "GET all Users"});
+const { db } = require("../../database"); 
+
+const getAllUsers = async (req, res, next) => {
+try {
+  const users = await db.Users.findAll();
+  res.json(users);
+} catch (error) {
+  next(error);
+}
+
 };
-const newUser = (req, res, next) => {
-    res.json({message: "POST new user"});
+const newUser = async (req, res, next) => {
+try {
+  const user = await db.Users.create(req.body);
+  res.json(user);
+} catch (error) {
+  next(error);
+}
 };
 
-const getUser = (req, res, next) => {
-    res.json({message: "GET user"});
+const getUser = async (req, res, next) => {
+try {
+  const user = await db.Users.findOne({
+    where: { id: req.params.id },
+  });
+} catch (error) {
+  next(error);
+}
 };
 
-//export controller functions
 module.exports = {
   getAllUsers,
   newUser,
