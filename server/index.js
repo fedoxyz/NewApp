@@ -10,9 +10,9 @@ async function startServer() {
 
     const httpServer = require("http").createServer(app);
 
-    const io = require("./api/socketServer").setupSocketServer(httpServer);
+    //    const io = require("./api/socketServer").setupSocketServer(httpServer);
 
-    app.set("io", io);
+    //  app.set("io", io);
 
     httpServer.listen(port, () => {
       console.log(`App listening on port ${port}`);
