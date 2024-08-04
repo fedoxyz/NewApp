@@ -12,12 +12,11 @@ console.log("checkLogin");
     const requestOptions = {
       method: "POST",
       headers: {
-        "Content=Type": "application/json",
-        Authorization: `${token}`,
+        "Content-Type": "application/json",
+       "Authorization": `${token}`,
       },
     };
-    const response = await fetch( `${import.meta.env.VITE_API_HOST}:${import.meta.env.VITE_API_PORT}/api/verify`, 
-      requestOptions);
+const response = await fetch(`${import.meta.env.VITE_API_HOST}:${import.meta.env.VITE_API_PORT}/api/verify`, requestOptions);
     if (!response.ok) {
       return 0;
     }

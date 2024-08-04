@@ -1,3 +1,4 @@
+const bcrypt = require("bcrypt")
 const { DataTypes } = require("sequelize")
 const { sequelize } = require("../")
 
@@ -23,5 +24,11 @@ const User = sequelize.define("users", {
     allowNull: false,
   },
 });
+
+User.beforeCreate(async (user) => {
+const salt = await bcrypt.genSaltSync(10);
+ user.password = bcrypt.hashSync(user.password, salt);
+ });
+
 
 module.exports = User;

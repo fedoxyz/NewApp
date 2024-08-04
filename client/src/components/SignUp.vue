@@ -55,6 +55,7 @@ return await response.json();
   <div class="sign-up-container">
   <div id="sign-up">
     <h2>Sign Up</h2>
+    <input placeholder="E-mail" id="input" v-model="signUpData.email" />
     <input placeholder="Username" id="input" v-model="signUpData.username" />
     <input placeholder="Password" id="input" v-model="signUpData.password" />
     <button @click="signUp()">Sign Up</button>

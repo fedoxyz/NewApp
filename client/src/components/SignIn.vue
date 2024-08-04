@@ -14,19 +14,19 @@
 
 async function signIn(){
 try {
+
 const requestOptions = {
 method: "POST",
 headers: { "Content-Type": "application/json" },
-body: JSON.stringify({email: signInData.email, password: signInData.password }),
+body: JSON.stringify({username: signInData.username, password: signInData.password }),
 };
 
-const response = await fetch(
-`${import.meta.env.VITE_API_HOST}:${import.meta.env.VITE_API_PORT}/api/user`,
-requestOptions);
+const response = await fetch(`${import.meta.env.VITE_API_HOST}:${import.meta.env.VITE_API_PORT}/api/sign-in`, requestOptions);
 
 const jsonResponse = await response.json();
 
 if (response.ok){
+console.log("response ok")
 info.isMessage = true;
 info.isError = false;
 info.message = "Successfully Signed In"

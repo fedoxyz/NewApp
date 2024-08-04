@@ -8,13 +8,14 @@ const userRoutes = require("./routes/user");
 const app = express();
 const router = express.Router();
 
+app.use(cors())
+
 router.use(errorHandler);
 router.use(cookieParser())
 router.use(tokenAuth);
 
 app.use(express.json());
 app.use(cors());
-app.use(addHeaders)
 app.use('/', userRoutes);
 
 

@@ -15,7 +15,9 @@ const sequelize = new Sequelize(
 );
 
 async function setupDB(){
- db.Users = require("./models/users"); 
+ db.Users = require("./models/users");
+
+  await sequelize.sync({ force: false });
 }
 
 module.exports = {
